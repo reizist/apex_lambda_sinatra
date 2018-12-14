@@ -1,0 +1,42 @@
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>sinatra test</title>
+  </head>
+  <body>
+    <h1>Sinatra Test</h1>
+    <form>
+      <input type="text" id="message-input" />
+      <input type="submit" id="submit">
+    </form>
+    <hr />
+    <h4>メッセージ</h4>
+    <ul id="messages">
+    </ul>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script>
+      (function() {
+        $('#submit').on('click', function(event){
+          event.preventDefault()
+          $.ajax({
+            type: 'POST',
+            url: '/prod/messages',
+            data: {
+              message: $('#message-input')[0].value
+            }
+          })
+          .done(function(res) {
+            $('#messages').append(
+              '<li>' + res.message + '</li>'
+            )
+            $('#message-input')[0].value = ''
+          })
+        })
+      })()
+    </script>
+  </body>
+</html>

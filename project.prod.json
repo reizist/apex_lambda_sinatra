@@ -1,0 +1,8 @@
+{
+  "name": "reizist",
+  "description": "reizist lambda functions",
+  "memory": 128,
+  "timeout": 5,
+  "role": "arn:aws:iam::801976005119:role/deploy_role",
+  "environment": {}
+}
